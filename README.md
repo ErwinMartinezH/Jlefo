@@ -12,7 +12,7 @@ Estamos trabajando en la adición de nuevos elementos a JLEFO para ampliar su fu
 
 - Máquinas de Turing: Agregaremos soporte para la creación y simulación de Máquinas de Turing, lo que permitirá explorar problemas más complejos y realizar cálculos más avanzados.
 - Gramáticas libres de contexto: También incluiremos la capacidad de trabajar con gramáticas libres de contexto, brindando la posibilidad de analizar y generar lenguajes más complejos.
-Repositorio original
+## Repositorio original
 
 El proyecto JLEFO se basa en un trabajo previo que se enfocaba únicamente en la resolución de AFD, AFND y expresiones regulares. Si deseas consultar el repositorio original, puedes acceder al siguiente enlace: https://github.com/Car10/JLEFO.git
 
