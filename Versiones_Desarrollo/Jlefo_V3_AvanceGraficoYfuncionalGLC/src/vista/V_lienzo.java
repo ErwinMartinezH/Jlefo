@@ -63,7 +63,7 @@ public class V_lienzo extends JPanel {//En este panel se dibuja el automata, Er 
             add(new V_panelER());
             setBackground(new Color(53, 60, 81));
             revalidate();
-        }else {
+        } else {
             add(new V_panelGLC());
             setBackground(new Color(53, 60, 81));
             revalidate();

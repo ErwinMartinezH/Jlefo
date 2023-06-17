@@ -1,6 +1,6 @@
 package vista;
 
-import HerramientasGLC.C_gramatica;
+import HerramientasGLC.Arbol;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,12 +9,15 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramatica libre de contexto
+
     /*Se establecera en el panel un cuadro con 2 columnas, la primer columna
      * es para los no terminales y la segunda columna son para los terminales */
 
-    private C_gramatica c_gramatica;
-    private JPanel panel;
-    private JPanel panel2;
+    private JPanel panel;//panel principal de la tabla
+    private JPanel panel2;//Panel para los botones
+    private JPanel panel3;//Panel para el arbol de derivacion
+    private JFrame frame;//Panel para la ventana del arbol de derivacion
+
     private JTable tabla;
     private JScrollPane scroll;
     private JButton b_probar;
@@ -28,9 +31,8 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
         componentes();
         accionRaton();
         accionBotones();
+        dibujarArbol();
     }
-
-
 
     private void componentes() {
         panel = new JPanel();
@@ -82,7 +84,6 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
         tabla.getTableHeader().setResizingAllowed(false);
         tabla.setEnabled(true);
 
-
     }
 
     public void accionRaton() {
@@ -94,11 +95,18 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
             }
         });
     }
+
     public void accionBotones() {
-        //usaremos el b_probar para ejecutar la gramatica
+        //usaremos el b_probar para ejecutar la gramatica libre de contexto
         b_probar.addActionListener(e -> {
-            c_gramatica = new C_gramatica(this);
-            //c_gramatica.probarGramatica();
+            /*Apreto el b_probar con click izquierdo del raton?, si lo apreto mostrar dibujararbol*/
+            if (e.getModifiers() == 16) {
+                dibujarArbol();
+                frame.setVisible(true);
+            } else {
+                //Colapsar frame de la ventana del arbol de derivacion
+                frame.setVisible(false);
+            }
         });
         //usaremos el b_eliminartb para eliminar todos los datos de la tabla
         b_eliminartb.addActionListener(e -> {
@@ -122,4 +130,35 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
             }
         });
     }
+
+    public void dibujarArbol() {//Crearemos arboles de derivacion en el frame y dentro el panel3
+        frame = new JFrame("Arbol de derivacion");
+        frame.setSize(500, 500);
+        frame.setLocationRelativeTo(null);
+        //Agregar icono a la ventana
+        ImageIcon icono = new ImageIcon("src/img_icon/arbol.png");
+        frame.setIconImage(icono.getImage());
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setVisible(false);
+        panel3 = new JPanel();
+        panel3.setLayout(new BorderLayout());
+        panel3.setBackground(new Color(255, 255, 255));
+        frame.add(panel3);
+        /*Tomara los valores de las filas de la tabla y los dibujara un arbol de derivacion en el panel3*/
+        String[] columnas = {"No terminales", "Terminales"};
+        String[][] datos = new String[tabla.getRowCount()][2];
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            for (int j = 0; j < 2; j++) {
+                datos[i][j] = (String) tabla.getValueAt(i, j);
+            }
+        }
+        //Crear arbol de derivacion
+        Arbol arbol = new Arbol(datos);
+        //Crear arbol de derivacion en el panel3
+        arbol.crearArbol(panel3);
+
+
+
+    }
+
 }
