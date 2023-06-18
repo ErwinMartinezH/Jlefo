@@ -4,8 +4,12 @@
  */
 package HerramientasGLC;
 
+import vista.V_panelGLC;
+
 import javax.swing.*;
 import java.util.ArrayList;
+
+import static javax.swing.JOptionPane.*;
 
 /**
  *
@@ -101,10 +105,9 @@ public class Gramatica {
                     recorrido(cadena, getRegla(r.noTerminal()), new ArrayList());
                 */
                 if(hojas.equals(this.Cadena))
-                    JOptionPane.showMessageDialog(null, "Cadena aceptada: " + hojas, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Cadena aceptada: " + hojas, "Mensaje", INFORMATION_MESSAGE);
                     //System.out.println("Cadena aceptada: " + hojas);
-                    //Mensaje emergente cadena aceptada
-                    else JOptionPane.showMessageDialog(null, "No se encontro una produccion valida " , "Mensaje",JOptionPane.INFORMATION_MESSAGE);//System.out.println("No se encontro una produccion valida");//anilizar este camino, quizas sea la respuesta para no terminales
+                    else showMessageDialog(null, "No se encontro una produccion valida " , "Mensaje", INFORMATION_MESSAGE);//System.out.println("No se encontro una produccion valida");//anilizar este camino, quizas sea la respuesta para no terminales
             }else {
                 ArrayList<String> reglasInvalidas = new ArrayList();
                 reglasInvalidas.add(r.instruccion);

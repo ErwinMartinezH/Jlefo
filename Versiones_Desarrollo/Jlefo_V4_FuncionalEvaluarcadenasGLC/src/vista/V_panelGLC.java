@@ -16,16 +16,16 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
 
     private JPanel panel;//panel principal de la tabla
     private JPanel panel2;//Panel para los botones
-    private JPanel panel3;//Panel para el arbol de derivacion
-    private JFrame frame;//Panel para la ventana del arbol de derivacion
+    private static JPanel panel3;//Panel para el arbol de derivacion
+    public static JFrame frame;//Panel para la ventana del arbol de derivacion
     private JTextField cadena;//Cadena a evaluar
-    private JTable tabla;
+    private static JTable tabla;
     private JScrollPane scroll;
     private JButton b_probar;
     private JButton b_eliminartb;
     private JButton b_añadir;
     private JButton b_eliminarF;
-    private JButton b_abrir;
+    private JButton b_crearArbol;
     private JButton b_nuevo;
 
     public V_panelGLC() {
@@ -40,7 +40,7 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
         panel.setBorder(new TitledBorder("Lenguaje de Gramatica Libre de Contexto"));
         panel.setFont(new Font("Arial", Font.BOLD, 12));
         panel.setBackground(new Color(255, 255, 255, 255));
-        panel.setPreferredSize(new Dimension(700, 500));
+        panel.setPreferredSize(new Dimension(1200, 500));
         panel.setLayout(new BorderLayout());
         //Posicionar la tabla en el centro del panel
         tabla = new JTable();
@@ -61,17 +61,18 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
         panel2.setLayout(new FlowLayout());
         cadena = new JTextField(20);
         b_probar = new JButton("Ejecutar");
+        b_crearArbol = new JButton("Mostrar arbol de derivacion");
         b_eliminartb = new JButton("Eliminar datos en tabla");
         b_añadir = new JButton("Añadir filas");
         b_eliminarF = new JButton("Eliminar fila");
-        b_abrir = new JButton("Abrir");
         b_nuevo = new JButton("Nuevo");
+        panel2.add(new JLabel("Cadena a evaluar: "));
         panel2.add(cadena);
         panel2.add(b_probar);
+        panel2.add(b_crearArbol);
         panel2.add(b_eliminartb);
         panel2.add(b_añadir);
         panel2.add(b_eliminarF);
-        panel2.add(b_abrir);
         panel2.add(b_nuevo);
         panel.add(panel2, BorderLayout.SOUTH);
 
@@ -102,8 +103,6 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
     public void accionBotones() {
         //usaremos el b_probar para ejecutar la gramatica libre de contexto
         b_probar.addActionListener(e -> {
-            /*Apreto el b_probar con click izquierdo del raton?, si lo apreto mostrar dibujararbol*/
-            if (e.getModifiers() == 16) {
                 /*toma los datos de la tabla y se guardan en una matriz*/
                 Gramatica gr = new Gramatica();
                 for (int i = 0; i < tabla.getRowCount(); i++) {
@@ -111,14 +110,6 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
                 }
                 /*se evalua las cadenas*/
                 gr.recorrido(cadena.getText());
-                /*se crea un frame para mostrar el arbol de derivacion*/
-                dibujarArbol();
-                frame.setVisible(true);
-
-            } else {
-                //Colapsa frame de la ventana del arbol de derivacion
-                frame.setVisible(false);
-            }
         });
         //usaremos el b_eliminartb para eliminar todos los datos de la tabla
         b_eliminartb.addActionListener(e -> {
@@ -141,9 +132,13 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
                 modelo.removeRow(filas - 1);
             }
         });
+        //usaremos el b_crearArbol para crear un arbol de derivacion
+        b_crearArbol.addActionListener(e -> {
+            frame.setVisible(true);
+        });
     }
 
-    public void dibujarArbol() {//Crearemos arboles de derivacion en el frame y dentro el panel3
+    public static void dibujarArbol() {//Crearemos arboles de derivacion en el frame y dentro el panel3
         frame = new JFrame("Arbol de derivacion");
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
