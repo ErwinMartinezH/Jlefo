@@ -4,10 +4,13 @@ import HerramientasGLC.Arbol;
 import HerramientasGLC.Gramatica;
 
 import java.awt.*;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import HerramientasGLC.Arbol;
+import HerramientasGLC.Nodo;
 
 public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramatica libre de contexto
 
@@ -147,22 +150,33 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
         frame.setIconImage(icono.getImage());
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(false);
+
         panel3 = new JPanel();
         panel3.setLayout(new BorderLayout());
         panel3.setBackground(new Color(255, 255, 255));
         frame.add(panel3);
-        /*Tomara los valores de las filas de la tabla y los dibujara un arbol de derivacion en el panel3*/
-        String[] columnas = {"No terminales", "Terminales"};
-        String[][] datos = new String[tabla.getRowCount()][2];
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            for (int j = 0; j < 2; j++) {
-                datos[i][j] = (String) tabla.getValueAt(i, j);
-            }
-        }
-        //Crear arbol de derivacion
-        Arbol arbol = new Arbol(datos);
-        //Crear arbol de derivacion en el panel3
-        arbol.crearArbol(panel3);
+        // Crea el árbol de derivación y lo agregar al panel3
+        Nodo raiz = construirArbolDeDerivacion(); // Debes implementar esta función para obtener la raíz del árbol
+        Arbol arbol = new Arbol(raiz);
+        panel3.add(arbol, BorderLayout.CENTER);
+
     }
+
+    /*Esta clase dibuja el arbol visual*/
+    public static Nodo construirArbolDeDerivacion() {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int rowCount = modelo.getRowCount();
+        if (rowCount == 0) {
+            return null;
+        }
+
+        // Construir el árbol de derivación recursivamente
+        return construirArbol(modelo, 0, rowCount - 1);
+    }
+
+    private static Nodo construirArbol(DefaultTableModel modelo, int start, int end) {
+     return null;
+    }
+
 
 }
