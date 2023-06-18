@@ -78,7 +78,7 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
 
         //Añadimos un ejemplo de gramatica libre de contexto a la tabla
         String[] columnas = {"No terminales", "Terminales"};
-        String[][] datos = {{"S", "ab"}, {"S", "abc"}, {"S", "acb"}};
+        String[][] datos = {{"S", "ab"}, {"S", "cba"}, {"S", "acb"}};
         tabla.setModel(new DefaultTableModel(datos, columnas));
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,7 +109,7 @@ public class V_panelGLC extends JPanel {//panel grafico de el lenguaje de gramat
                     gr.addProduccion(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString());
                 }
                 /*se evalua las cadenas*/
-                gr.recorrido(cadena.getText());
+                gr.recorrido1(cadena.getText());
         });
         //usaremos el b_eliminartb para eliminar todos los datos de la tabla
         b_eliminartb.addActionListener(e -> {
