@@ -75,14 +75,14 @@ public class V_interfaz extends JFrame {
         er.setIcon(new ImageIcon(getClass().getResource(rutaIconos + "er-16.png")));
         er.addActionListener(ctrl);
         nuevo.add(er);
-
+        /*
         mt.setAccelerator(KeyStroke.getKeyStroke(VK_M, SHIFT_MASK | CTRL_MASK));
         mt.setText(MT);
         mt.setName(MT);
         mt.setIcon(new ImageIcon(getClass().getResource(rutaIconos + "mt-16.png")));
         mt.addActionListener(ctrl);
         nuevo.add(mt);
-
+*/
         glc.setAccelerator(KeyStroke.getKeyStroke(VK_G, SHIFT_MASK | CTRL_MASK));
         glc.setText(GLC);
         glc.setName(GLC);
@@ -300,7 +300,7 @@ public class V_interfaz extends JFrame {
     private final JMenu ayuda = new JMenu(AYUDA);
     private final JMenuItem af = new JMenuItem(AF);
     private final JMenuItem er = new JMenuItem(ER);
-    private final JMenuItem mt = new JMenuItem(MT);
+   // private final JMenuItem mt = new JMenuItem(MT);
     private final JMenuItem glc = new JMenuItem(GLC);
     private final JMenuItem abrir = new JMenuItem(ABRIR);
     public static final JMenuItem guardar = new JMenuItem(GUARDAR);

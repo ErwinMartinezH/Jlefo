@@ -9,7 +9,7 @@ import vista.V_interfaz;
 
 /**
  *
- * @authors Alexis, José Carlos, Margarito
+ * @authors Erwin
  */
 public final class Jlefo extends JWindow {
 

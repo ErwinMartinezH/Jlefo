@@ -25,9 +25,9 @@ import modelo.M_transicion;
 
 /**
  *
- * @author herma
+ * @author Erwin
  */
-public class V_lienzo extends JPanel {
+public class V_lienzo extends JPanel {//En este panel se dibuja el automata, Er o GLC
 
     private String tipoPanel;
     private C_automata ctrl;
@@ -59,11 +59,16 @@ public class V_lienzo extends JPanel {
             ctrl = new C_automata(this, rastreo);
             rastreo.cargarControlador(ctrl);
             layouts();
-        } else {
+        } else if (tipoPanel.equals(ER)) {
             add(new V_panelER());
             setBackground(new Color(53, 60, 81));
             revalidate();
+        } else {
+            add(new V_panelGLC());
+            setBackground(new Color(53, 60, 81));
+            revalidate();
         }
+
     }
 
     /**

@@ -30,7 +30,7 @@ public class V_panelER extends JPanel {
 
     public JLabel getEtqColumna() {
         return etqColumna;
-    }
+    }//etiqueta de columna
 
     public JLabel getEtqError() {
         return etqError;

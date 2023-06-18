@@ -17,7 +17,7 @@ import javax.swing.JWindow;
 
 /**
  *
- * @author herma
+ * @author Erwin
  */
 public class V_infoJlefo extends JWindow {
 

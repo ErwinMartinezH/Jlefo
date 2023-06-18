@@ -124,6 +124,28 @@ public class C_interfaz extends WindowAdapter implements ActionListener, Printab
                     interfaz.controlVisual(false, false, false, false);
                 }
                 break;
+
+            case GLC:
+                tabs.setVisible(true);
+                if (indicePestaña.getPesEliminada().size() > 0) {
+                    idNombreElimado = idNombre;
+                    idNombre = (int) indicePestaña.getPesEliminada().get(0);
+                    indicePestaña.getPesEliminada().remove(0);
+                    tabs.añadirTab("Nueva GLC  " + idNombre,
+                            indicePestaña.getIndice(), new File(""), idNombre, GLC);
+                    tabs.setSelectedIndex(indicePestaña.getIndice());
+                    indicePestaña.maxIndice();
+                    idNombre = idNombreElimado;
+                    interfaz.controlVisual(false, false, false, false);
+                } else {
+                    tabs.añadirTab("Nueva GLC  " + idNombre,
+                            indicePestaña.getIndice(), new File(""), idNombre, GLC);
+                    tabs.setSelectedIndex(indicePestaña.getIndice());
+                    indicePestaña.maxIndice();
+                    idNombre++;
+                    interfaz.controlVisual(false, false, false, false);
+                }
+                break;
             case ABRIR:
                 Archivo.abrirJLEFO(tabs);
                 break;

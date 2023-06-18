@@ -1,7 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 package vista;
 
@@ -14,13 +11,13 @@ import static funciones.NmComponentes.*;
 
 /**
  *
- * @author herma
+ * @author Erwin
  */
-public class V_popupmenu extends JPopupMenu {
+public class V_popupmenu extends JPopupMenu {//esta clase es para el menu emergente
 
-    private JCheckBoxMenuItem estadoAcep;
+    private JCheckBoxMenuItem estadoAcep;//para saber si es un estado de aceptacion
 
-    public V_popupmenu(V_lienzo dibujar, C_automata ctrl) {
+    public V_popupmenu(V_lienzo dibujar, C_automata ctrl) {//recibe el lienzo y el controlador para poder hacer las acciones
         super.setVisible(false);
         super.setInvoker(dibujar);
         JMenu eliminar = new JMenu("Eliminar");

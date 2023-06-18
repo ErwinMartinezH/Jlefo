@@ -72,6 +72,12 @@ public class V_tabs extends JTabbedPane {
                         V_interfaz.menu.setEnabled(false);
                     }
                 }
+                if (indicePestaña.getIndice() > 1) {
+                    if (lienzo.getTipoPanel().equals(GLC)) {
+                        C_interfaz.deslizarMenu(GLC);
+                        V_interfaz.menu.setEnabled(true);
+                    }
+                }
             }
         }
         );
@@ -85,7 +91,10 @@ public class V_tabs extends JTabbedPane {
         scroll.getHorizontalScrollBar().setUnitIncrement(15);
         if (tipoPanel.equals(ER)) {
             areaDibujo = new V_lienzo(tipoPanel);
-        } else {
+        }else if(tipoPanel.equals(GLC)){
+            areaDibujo = new V_lienzo(tipoPanel);
+        }
+        else{
             areaDibujo = new V_lienzo(tipoPanel);
             long time = System.currentTimeMillis();
             areaDibujo.setName(Long.toString(time));
@@ -106,8 +115,10 @@ public class V_tabs extends JTabbedPane {
 
         if (tipoPanel.equals(ER)) {
             C_interfaz.deslizarMenu(ER);
-        } else {
+        } else if(tipoPanel.equals(AF)){
             C_interfaz.deslizarMenu(AF);
+        }else if(tipoPanel.equals(GLC)){
+            C_interfaz.deslizarMenu(GLC);
         }
     }
 

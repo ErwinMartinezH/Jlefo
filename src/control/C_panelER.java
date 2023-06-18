@@ -19,7 +19,7 @@ import funciones.archivo.Archivo;
 import funciones.er_afd.Inicio;
 import vista.V_panelER;
 
-public class C_panelER implements ActionListener, CaretListener {
+public class C_panelER implements ActionListener, CaretListener {//esta clase es control y vista a la vez
 
     public V_panelER panelER;
     private String alfabetoER = "";
