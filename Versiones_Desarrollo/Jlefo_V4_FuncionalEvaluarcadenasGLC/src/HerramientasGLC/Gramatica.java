@@ -130,17 +130,20 @@ public class Gramatica {
                     cadena = cadena.substring(lona);
                     if (r.noTerminal() != null)
                         recorrido(cadena, getRegla(cadena.substring(0,1)), new ArrayList());*/
-                    if(hojas.equals(this.Cadena))
+                    /*if(hojas.equals(this.Cadena))
                     System.out.println("Cadena aceptada: " + hojas);
-                    else System.out.println("No se encontro una produccion valida");
+                    else System.out.println("No se encontro una produccion valida");*/
+                    if(hojas.equals(this.Cadena))
+                        JOptionPane.showMessageDialog(null, "Cadena aceptada: " + hojas, "Mensaje", INFORMATION_MESSAGE);
+                    else showMessageDialog(null, "No se encontro una produccion valida " , "Mensaje", INFORMATION_MESSAGE);
                 }
                 else { 
                     //this.hojas=""; parte de lo que hay que analizar
                     reglaInvalida.add(r.instruccion);
                     recorrido(cadena, getRegla(r.nombre, reglaInvalida), reglaInvalida);
                 }
-            }else System.out.println("No se encontro una produccion valida");
-        }else System.out.println("No se encontro una produccion valida");
+            }else showMessageDialog(null, "No se encontro una produccion valida " , "Mensaje", INFORMATION_MESSAGE);//System.out.println("No se encontro una produccion valida");
+        }else showMessageDialog(null, "No se encontro una produccion valida " , "Mensaje", INFORMATION_MESSAGE);//System.out.println("No se encontro una produccion valida");
     }
     
     public String recorridoRecursivo(String regla, String cadena){
