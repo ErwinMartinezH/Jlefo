@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JLEFO_V1_GIT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/JLEFO_V1_GIT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
