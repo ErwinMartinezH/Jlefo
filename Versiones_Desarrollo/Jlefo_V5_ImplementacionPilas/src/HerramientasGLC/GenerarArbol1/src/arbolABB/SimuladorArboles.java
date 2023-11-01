@@ -1,8 +1,6 @@
 
-package arbolBB;
+package HerramientasGLC.GenerarArbol1.src.arbolABB;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.swing.JPanel;
 
 /**

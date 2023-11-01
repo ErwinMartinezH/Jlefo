@@ -1,5 +1,5 @@
 
-package arbolBB;
+package HerramientasGLC.GenerarArbol1.src.arbolABB;
 
   /**
  *
