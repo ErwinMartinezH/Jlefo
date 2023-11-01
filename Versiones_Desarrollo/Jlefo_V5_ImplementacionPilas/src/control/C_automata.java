@@ -853,6 +853,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
         }
 
         switch (tipoAutomata) {
+            case ADP:
+                //quiero imprimir el alfabeto
+                System.out.println("Alfabeto: " + alfabetoFinal);
+
             case AFD:
                 model_TransicionGeneral = tipoTableModel();
                 tablaTransiciones();
@@ -951,6 +955,22 @@ public class C_automata extends MouseAdapter implements ActionListener {
                 tabla_AF = new DefaultTableModel(new Object[][]{},
                         new String[]{
                             "ESTADO", "Σ={0}", "Σ={1}", "FINAL"
+                        }) {
+                    boolean[] canEdit = new boolean[]{
+                        false, false, false, false
+                    };
+
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                };
+                break;
+
+            default:
+                tabla_AF = new DefaultTableModel(new Object[][]{},
+                        new String[]{
+                            "ESTADO", "Σ={0}", "Σ= {1}", "Σ={2}","FINAL"
                         }) {
                     boolean[] canEdit = new boolean[]{
                         false, false, false, false
