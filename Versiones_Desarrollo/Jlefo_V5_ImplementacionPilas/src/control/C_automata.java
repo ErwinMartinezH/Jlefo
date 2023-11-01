@@ -532,11 +532,20 @@ public class C_automata extends MouseAdapter implements ActionListener {
 
                                 // Verificar si el usuario hizo clic en OK
                                 if (result == JOptionPane.OK_OPTION) {
-                                    //String destino = destinoField.getText();  // Obtener el valor del campo de destino
+
+
+                                    //String destino = getTransiciones().get(trans.getDestino()).getAlfabeto();  // Obtener el valor del campo de destino
+                                    System.out.println("destino: " + trans.getDestino());
+                                    int destino = trans.getDestino();
                                     String lectura = lecturaField.getText();
                                     String pop = popField.getText();
                                     String push = pushField.getText();
-
+                                    //si alguno de los campos esta vacío se mostrará un mensaje de error
+                                    // Verificar si alguno de los campos está vacío
+                                    if (lectura.isEmpty() || pop.isEmpty() || push.isEmpty()) {
+                                        JOptionPane.showMessageDialog(lienzo, "Por favor, complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                                        return;
+                                    }
                                     // Construir la cadena alfa con los valores ingresados
                                     alfa = "(" + destino + ", " + lectura + ", " + pop + ", " + push + ")";
 
@@ -748,6 +757,13 @@ public class C_automata extends MouseAdapter implements ActionListener {
                 String lectura = lecturaField.getText();
                 String pop = popField.getText();
                 String push = pushField.getText();
+
+                //si alguno de los campos esta vacío se mostrará un mensaje de error
+                // Verificar si alguno de los campos está vacío
+                if (lectura.isEmpty() || pop.isEmpty() || push.isEmpty()) {
+                    JOptionPane.showMessageDialog(lienzo, "Por favor, complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 // Construir la cadena alfa con los valores ingresados
                 alfa = "(" + destino + ", " + lectura + ", " + pop + ", " + push + ")";
