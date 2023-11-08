@@ -42,7 +42,7 @@ public class NmComponentes {
     public static final String TRANSICION = "Dibujar Transición";
     public static final String SELECCIONAR = "Mover Estados";
     public static final String ANALIZAR = "Analizar Autómata";
-    public static final String LIMPIAR = "Limpiar";
+    public static final String EVALUAR = "Evaluar";
     public static final String GENERAL = "General";
     public static final String BOTON = "Boton";
 
@@ -97,9 +97,9 @@ public class NmComponentes {
             + "\n\nMientras esta opción este activa podrás dibujar únicamente estados."
             + "\n\nPara desactivar selecciona una de las otras opciones. ";
 
-    public static String INFO_LIMPIAR = "Limpiar: "
-            + "\n\nSelecciona para limpiar el diagrama. "
-            + "\n\nPara limpiar el diagrama da clic en el centro del diagrama y de menú emergente selecciona la opción limpiar. ";
+    public static String INFO_EVALUAR = "Evaluar: "
+            + "\n\nSelecciona para realizar el análisis de diagrama que se tiene dibujado en el momento."
+            + "\n\nPara realizar el analisis de diagrama de un ADP se lanzara una ventana para hacer el rastreo.";
 
     public static String INFO_TRANSICION = "Transición: "
             + "\n\nSelecciona para dibujar las transiciones de estado a estado."

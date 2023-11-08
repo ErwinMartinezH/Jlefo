@@ -10,6 +10,7 @@ import HerramientaADP.Transicion;
 import funciones.LienzoFromScroll;
 import modelo.M_estado;
 import modelo.M_transicion;
+import vista.V_evaluoCadenas;
 import vista.V_lienzo;
 import vista.V_popupmenu;
 import vista.V_tabs;
@@ -39,9 +40,10 @@ public class C_slideMenu implements ActionListener {
     static boolean seleccionar = false;
     static boolean transicion = false;
     private boolean analizar = false;
-    private boolean limpiar = false;
+    private boolean evaluar = false;
     V_tabs tabs;
     public V_lienzo lienzo;
+    public V_evaluoCadenas evaluo;
     ArrayList<Estado> estado = new ArrayList();
 
     public C_slideMenu(V_tabs tabs) {
@@ -58,7 +60,7 @@ public class C_slideMenu implements ActionListener {
                     estados = true;
                     seleccionar = false;
                     transicion = false;
-                    limpiar = false;
+                    evaluar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
@@ -68,7 +70,7 @@ public class C_slideMenu implements ActionListener {
                     transicion = true;
                     estados = false;
                     seleccionar = false;
-                    limpiar = false;
+                    evaluar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
@@ -78,7 +80,7 @@ public class C_slideMenu implements ActionListener {
                     seleccionar = true;
                     estados = false;
                     transicion = false;
-                    limpiar = false;
+                    evaluar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 }
@@ -87,7 +89,7 @@ public class C_slideMenu implements ActionListener {
                 if (!analizar) {
                     analizar = true;
                     seleccionar = false;
-                    limpiar = false;
+                    evaluar = false;
                     estados = false;
                     transicion = false;
 
@@ -160,15 +162,17 @@ public class C_slideMenu implements ActionListener {
                 }
                 break;
 
-            case LIMPIAR:
-                if (!limpiar) {
-                    limpiar = true;
+            case EVALUAR:
+                if (!evaluar) {
+                    evaluar = true;
                     estados = false;
                     seleccionar = false;
                     transicion = false;
                     analizar = false;
                 }
-                limpiar = false;
+                evaluar = false;
+                //Llamo a la clase evaluo
+                evaluo = new V_evaluoCadenas();
 
                 break;
         }
