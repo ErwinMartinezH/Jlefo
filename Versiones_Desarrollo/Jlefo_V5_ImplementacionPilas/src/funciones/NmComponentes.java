@@ -6,7 +6,6 @@
 package funciones;
 
 /**
- *
  * @author herma
  */
 public class NmComponentes {
@@ -43,15 +42,16 @@ public class NmComponentes {
     public static final String TRANSICION = "Dibujar Transición";
     public static final String SELECCIONAR = "Mover Estados";
     public static final String ANALIZAR = "Analizar Autómata";
+    public static final String LIMPIAR = "Limpiar";
     public static final String GENERAL = "General";
-    public static final String BOTON ="Boton";
-    
+    public static final String BOTON = "Boton";
+
     //PopupMenu
     public static final String ESTADO_ACEP = "Estado de Aceptación";
     public static final String EDITAR_TRANS = "Editar Transición";
     public static final String ELIM_ESTADO = "Estado";
     public static final String ELIM_TRANS = "Transición";
-    
+
     //Rastreo
     public static final String AFD = "AFD";
     public static final String ORDENAR = "Ordenar";
@@ -64,7 +64,7 @@ public class NmComponentes {
     public static final String AFND = "AFND";
     public static final String RETORNAR = "RETORNAR";
     public static final String DESCONECTADOS = "DESCONECTADOS";
-    
+
     //Expresiones regulares
     public static final String CERO = "0";
     public static final String UNO = "1";
@@ -97,6 +97,10 @@ public class NmComponentes {
             + "\n\nMientras esta opción este activa podrás dibujar únicamente estados."
             + "\n\nPara desactivar selecciona una de las otras opciones. ";
 
+    public static String INFO_LIMPIAR = "Limpiar: "
+            + "\n\nSelecciona para limpiar el diagrama. "
+            + "\n\nPara limpiar el diagrama da clic en el centro del diagrama y de menú emergente selecciona la opción limpiar. ";
+
     public static String INFO_TRANSICION = "Transición: "
             + "\n\nSelecciona para dibujar las transiciones de estado a estado."
             + "\n\nPara dibuja un a traición da clic en el centro del estado inicial y sin soltar desliza al centro del estado final suelta y selecciona el alfabeto."
@@ -119,97 +123,97 @@ public class NmComponentes {
             + "\n\n• La opción de rastreo paso a paso que inicia la simulación del rastreo en el diagrama seleccionando una cadena de la tabla de cadenas."
             + "\n\n• La opción de   regular la velocidad del rastreo paso a paso."
             + "\n\n• La visualización de la cadena que se está rastreando.";
-    
+
     public static final String RASTREANDO = "Para  editar  el  diagrama,\ncierre la ventana de Rastreo.";
     public static final String SIN_TRANS = "El estado inicial no tiene transiciones";
     public static final String SIN_CONEXION = "Uno o más estados son inalcanzables";
-    
+
     public static final String URL = "https://www.youtube.com/channel/UC-bWxxYxT5aKQECC2yjpVnQ?view_as=subscriber";
     public static final String NO_CONEXION = "No se ha podido conectar al sitio web";
     public static final String NO_ENCONTRADO = "No se encontró el archivo solicitado";
-    
-    
-     public static final String ER_INFO = "Expresiones regulares"
-                                    + "\n"
-                                    + "\n"
-                                    + "En este módulo podrás ingresar y analizar expresiones regulares, así como obtener AFD equivalente."
-                                    + "\n"
-                                    + "\n"
-                                    + "Ingresa una expresión regular en el campo especificado, siguiendo el formato correspondiente."
-                                    + "\n"
-                                    + "\n"
-                                    + "Ejemplo:"
-                                    + "\n" 
-                                    + "\n"
-                                    +" (0|1)*011 ";
-    
+
+
+    public static final String ER_INFO = "Expresiones regulares"
+            + "\n"
+            + "\n"
+            + "En este módulo podrás ingresar y analizar expresiones regulares, así como obtener AFD equivalente."
+            + "\n"
+            + "\n"
+            + "Ingresa una expresión regular en el campo especificado, siguiendo el formato correspondiente."
+            + "\n"
+            + "\n"
+            + "Ejemplo:"
+            + "\n"
+            + "\n"
+            + " (0|1)*011 ";
+
     public static final String C_INFO = "Eliminar : "
-                                   + "\n" 
-                                   + "\n"
-                                   + "Elimina toda la expresión regular ingresada.";
+            + "\n"
+            + "\n"
+            + "Elimina toda la expresión regular ingresada.";
 
     public static final String CE_INFO = "Borrar : "
-                                    + "\n" 
-                                    + "\n" 
-                                    + "Borra carácter por carácter de la expresión regular.";
+            + "\n"
+            + "\n"
+            + "Borra carácter por carácter de la expresión regular.";
 
     public static final String GO_INFO = "Analizar :  "
-                                    + "\n" 
-                                    + "\n"
-                                    + "Realiza el análisis de la expresión regular ingresada, obtiene la tabla de cadenas aceptadas y no aceptadas.";
-    
+            + "\n"
+            + "\n"
+            + "Realiza el análisis de la expresión regular ingresada, obtiene la tabla de cadenas aceptadas y no aceptadas.";
+
     public static final String AFD_INFO = "AFD : "
-                                   + "\n"
-                                   + "\n"
-                                   + "Realiza la conversión de la expresión regular introducida a su autómata finito determinista equivalente.";
-    
+            + "\n"
+            + "\n"
+            + "Realiza la conversión de la expresión regular introducida a su autómata finito determinista equivalente.";
+
     public static final String ORDENAR_INFO = "Desordenar/Ordenar : "
-                                       + "\n" 
-                                       + "\n"
-                                       + "Desordena y ordena las cadenas.";
-    
+            + "\n"
+            + "\n"
+            + "Desordena y ordena las cadenas.";
+
     public static final String CERO_INFO = "\" 0 \""
-                                    + "\n"
-                                    + "\n"
-                                    + "Símbolo del alfabeto, inserta un 0 en la expresión regular.";
-    
+            + "\n"
+            + "\n"
+            + "Símbolo del alfabeto, inserta un 0 en la expresión regular.";
+
     public static final String UNO_INFO = "\" 1 \""
-                                    + "\n"
-                                    + "\n"
-                                    + "Símbolo del alfabeto, inserta un 1 en la expresión regular.";
-    
+            + "\n"
+            + "\n"
+            + "Símbolo del alfabeto, inserta un 1 en la expresión regular.";
+
     public static final String PARENIZQ_INFO = "\" ( \""
-                                        + "\n"
-                                        + "\n"
-                                        + "Operador, paréntesis izquierdo.\n";
-    
+            + "\n"
+            + "\n"
+            + "Operador, paréntesis izquierdo.\n";
+
     public static final String PARENDER_INFO = "\" ) \""
-                                        + "\n" 
-                                        + "\n"
-                                        + "Operador, paréntesis derecho.";
-    
+            + "\n"
+            + "\n"
+            + "Operador, paréntesis derecho.";
+
     public static final String PIPE_INFO = "\" | \""
-                                    + "\n"
-                                    + "\n"
-                                    + "Operador, pleca. \n\nSe utiliza como operador lógico OR ";
-    
+            + "\n"
+            + "\n"
+            + "Operador, pleca. \n\nSe utiliza como operador lógico OR ";
+
     public static final String ESTRELLAMAS_INFO = "\" + \""
-                                           + "\n" 
-                                           + "\n"
-                                           + "Operador, cruz."
-                                           + "\n"
-                                           + "\n"
-                                           + "Se utiliza para denotar lo siguiente: \n r+ es una e.r. que denota a RR*\n Es decir:\n"
-                                           + " 0+ ={0}+ = {0}{0}+";
-    
+            + "\n"
+            + "\n"
+            + "Operador, cruz."
+            + "\n"
+            + "\n"
+            + "Se utiliza para denotar lo siguiente: \n r+ es una e.r. que denota a RR*\n Es decir:\n"
+            + " 0+ ={0}+ = {0}{0}+";
+
     public static final String ESTRELLA_INFO = "\" * \""
-                                        + "\n"
-                                        + "\n"
-                                        + "Operador, estrella."
-                                        + "\n"
-                                        + "\n"
-                                        + "Se utiliza para denotar lo siguiente: \n r* es una e.r. que denota a R*\n Es decir:\n"
-                                           + " 0* = {ε,0,00,000,...}}";
-    
-    
+            + "\n"
+            + "\n"
+            + "Operador, estrella."
+            + "\n"
+            + "\n"
+            + "Se utiliza para denotar lo siguiente: \n r* es una e.r. que denota a R*\n Es decir:\n"
+            + " 0* = {ε,0,00,000,...}}";
+
+
 }

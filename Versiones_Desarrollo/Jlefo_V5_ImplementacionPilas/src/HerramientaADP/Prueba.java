@@ -7,32 +7,31 @@ package HerramientaADP;
 import java.util.ArrayList;
 
 /**
- *
  * @author jesus
  */
 public class Prueba {
-    public static void main (String args[]){
-        
+    public static void main(String args[]) {
+
         ArrayList<Estado> estados = new ArrayList();
-        
-        Estado est =  new Estado(0, false);
+
+        Estado est = new Estado(0, false);
         est.addTransicion(new Transicion(1, "a", "?", "?"));
         estados.add(est);
-        
-        
-        est= new Estado(1, false);
+
+
+        est = new Estado(1, false);
         est.addTransicion(new Transicion(1, "a", "?", "?"));
-        est.addTransicion(new Transicion(2, "b", "?", "?")); 
-        estados.add(est);
-        
-        est= new Estado(2, false);
         est.addTransicion(new Transicion(2, "b", "?", "?"));
-        est.addTransicion(new Transicion(3, "?", "Z", "?")); 
         estados.add(est);
-        
-        est= new Estado(3, true);
+
+        est = new Estado(2, false);
+        est.addTransicion(new Transicion(2, "b", "?", "?"));
+        est.addTransicion(new Transicion(3, "?", "Z", "?"));
         estados.add(est);
-        
+
+        est = new Estado(3, true);
+        estados.add(est);
+
         Automata au = new Automata(estados);
         au.movimiento("bb");
         
@@ -49,5 +48,5 @@ public class Prueba {
             }
         });*/
     }
-    
+
 }

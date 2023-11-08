@@ -6,31 +6,40 @@
 package control;
 
 import HerramientaADP.Estado;
+import HerramientaADP.Transicion;
 import funciones.LienzoFromScroll;
-import java.awt.Component;
+import modelo.M_estado;
+import modelo.M_transicion;
+import vista.V_lienzo;
+import vista.V_popupmenu;
+import vista.V_tabs;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import modelo.M_transicion;
-import vista.V_tabs;
-import static funciones.NmComponentes.*;
-import java.awt.Cursor;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
-import vista.V_lienzo;
+
+import static funciones.NmComponentes.*;
+
 
 /**
- *
  * @author herma
  */
 public class C_slideMenu implements ActionListener {
 
     static boolean estados = false;
+    private V_popupmenu menu;
+    private List<M_estado> activo;
+    private final String ACEPTACION = "Edo-Aceptacion";
+    private final boolean EDOACEP = true;
+    private final boolean EDONOACEP = false;
     static boolean seleccionar = false;
     static boolean transicion = false;
     private boolean analizar = false;
+    private boolean limpiar = false;
     V_tabs tabs;
     public V_lienzo lienzo;
     ArrayList<Estado> estado = new ArrayList();
@@ -49,6 +58,7 @@ public class C_slideMenu implements ActionListener {
                     estados = true;
                     seleccionar = false;
                     transicion = false;
+                    limpiar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
@@ -58,6 +68,7 @@ public class C_slideMenu implements ActionListener {
                     transicion = true;
                     estados = false;
                     seleccionar = false;
+                    limpiar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
@@ -67,6 +78,7 @@ public class C_slideMenu implements ActionListener {
                     seleccionar = true;
                     estados = false;
                     transicion = false;
+                    limpiar = false;
                     V_lienzo cursor = new LienzoFromScroll().obtener(tabs);
                     cursor.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 }
@@ -75,23 +87,56 @@ public class C_slideMenu implements ActionListener {
                 if (!analizar) {
                     analizar = true;
                     seleccionar = false;
+                    limpiar = false;
                     estados = false;
                     transicion = false;
+
                 }
                 analizar = false;
-
 
                 if (tabs.getSelectedComponent() != null) {
                     V_lienzo check = new LienzoFromScroll().obtener(tabs);
                     check.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                     MouseListener[] ml = check.getMouseListeners();
                     C_automata c = (C_automata) ml[0];
+                    //boolean bandera = false;
                     if (check.getTipoPanel().equals(ADP)) {
+                        /*try {
+                            JOptionPane.showMessageDialog(null, "Aun no implementado");
+                            bandera = true;
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "Aun no implementado");
+                            bandera = true;
+
+                        }*/
                         List<M_transicion> transiciones = c.getTransiciones();
-                        if (!transiciones.isEmpty()) {
+                        if (!transiciones.isEmpty() /*&& bandera == false*/) {
                             int i = 0;
+
                             while (i < transiciones.size()) {
-                                System.out.println(transiciones.get(i).getAlfabeto());
+                                //System.out.println(transiciones.get(i).getAlfabeto());
+                                // Dividir la cadena usando coma y paréntesis como delimitadores
+                                String alfabeto = transiciones.get(i).getAlfabeto();
+                                String[] valores = alfabeto.replaceAll("[\\(\\)\\,]", "").split("\\s+");
+                                Estado est = new Estado(transiciones.get(i).getDestino(), EDONOACEP);
+                                est.addTransicion(new Transicion(transiciones.get(i).getDestino(), valores[1], valores[0], valores[2]));
+                                estado.add(est);
+                                //System.out.println(est);
+                                //System.out.println(transiciones.get(i).getOrigen()+" "+valores[1]+ " "+valores[2] + " "+ valores[3]);
+                                // Imprimir los valores de la cadena
+                                /*for (String valor : valores) {
+                                    System.out.println(valor);
+                                }*/
+                                /*ordenar los estados e imprimir las transiciones dependiendo del estado de donde sale, acumula las transiciones, ejemplo.
+                                estado: 0
+                                1,?,?,?
+                                0,?,?,?
+
+                                estado: 1
+                                1,?,?,?
+                                */
+
+
                                 i++;
                             }
                         } else {
@@ -113,9 +158,19 @@ public class C_slideMenu implements ActionListener {
                             "Analizar Autómata", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
+                break;
+
+            case LIMPIAR:
+                if (!limpiar) {
+                    limpiar = true;
+                    estados = false;
+                    seleccionar = false;
+                    transicion = false;
+                    analizar = false;
+                }
+                limpiar = false;
 
                 break;
         }
     }
-
 }

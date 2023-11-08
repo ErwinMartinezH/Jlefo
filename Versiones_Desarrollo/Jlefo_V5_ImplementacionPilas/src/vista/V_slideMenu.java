@@ -7,23 +7,23 @@ package vista;
 
 import control.C_slideMenu;
 import funciones.botonesLib.RSButtonMetro;
+
 import javax.swing.*;
-import static funciones.NmComponentes.*;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.border.TitledBorder;
+
+import static funciones.NmComponentes.*;
 
 /**
- *
  * @author herma
  */
 public class V_slideMenu extends JPanel {
 
     private V_tabs tabs;
     private C_slideMenu ctrl;
+    public V_lienzo lienzo;
     private final String rutaIconos = "/img_icon/";
 
     V_slideMenu(V_tabs tabs) {
@@ -41,8 +41,11 @@ public class V_slideMenu extends JPanel {
         transicion.setToolTipText(TRANSICION);
         seleccionar.setName(SELECCIONAR);
         seleccionar.setToolTipText(SELECCIONAR);
+        limpiar.setName(LIMPIAR);
+        limpiar.setToolTipText(LIMPIAR);
         analizar.setName(ANALIZAR);
         analizar.setToolTipText(ANALIZAR);
+
 
         info.setFocusable(false);
 
@@ -85,6 +88,19 @@ public class V_slideMenu extends JPanel {
         });
         add(seleccionar);
 
+        limpiar.setIcon(new ImageIcon(getClass()
+                .getResource(rutaIconos + "limpiar-24.png")));
+        limpiar.setColorHover(new Color(217, 189, 107));
+        limpiar.setFocusable(false);
+        limpiar.addActionListener(ctrl);
+        limpiar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controlAction(e);
+            }
+        });
+        add(limpiar);
+
         analizar.setIcon(new ImageIcon(getClass()
                 .getResource(rutaIconos + "analizar-24.png")));
         analizar.setColorHover(new Color(217, 189, 107));
@@ -120,10 +136,12 @@ public class V_slideMenu extends JPanel {
                 estado.setSelected(true);
                 transicion.setSelected(false);
                 seleccionar.setSelected(false);
+                limpiar.setSelected(false);
                 analizar.setSelected(false);
                 estado.setColorPresionado();
                 transicion.setColorSinPresionar();
                 seleccionar.setColorSinPresionar();
+                limpiar.setColorSinPresionar();
                 analizar.setColorSinPresionar();
                 info.setText(INFO_ESTADO);
                 break;
@@ -131,10 +149,12 @@ public class V_slideMenu extends JPanel {
                 transicion.setSelected(true);
                 estado.setSelected(false);
                 seleccionar.setSelected(false);
+                limpiar.setSelected(false);
                 analizar.setSelected(false);
                 transicion.setColorPresionado();
                 estado.setColorSinPresionar();
                 seleccionar.setColorSinPresionar();
+                limpiar.setColorSinPresionar();
                 analizar.setColorSinPresionar();
                 info.setText(INFO_TRANSICION);
                 break;
@@ -142,21 +162,36 @@ public class V_slideMenu extends JPanel {
                 seleccionar.setSelected(true);
                 estado.setSelected(false);
                 transicion.setSelected(false);
+                limpiar.setSelected(false);
                 analizar.setSelected(false);
                 seleccionar.setColorPresionado();
                 estado.setColorSinPresionar();
                 transicion.setColorSinPresionar();
+                limpiar.setColorSinPresionar();
                 analizar.setColorSinPresionar();
                 info.setText(INFO_SELECCIONAR);
+                break;
+            case LIMPIAR:
+                limpiar.setSelected(true);
+                estado.setSelected(false);
+                transicion.setSelected(false);
+                seleccionar.setSelected(false);
+                limpiar.setColorPresionado();
+                estado.setColorSinPresionar();
+                transicion.setColorSinPresionar();
+                seleccionar.setColorSinPresionar();
+                info.setText(INFO_LIMPIAR);
                 break;
             case ANALIZAR:
                 analizar.setSelected(true);
                 estado.setSelected(false);
                 transicion.setSelected(false);
+                limpiar.setSelected(false);
                 seleccionar.setSelected(false);
                 analizar.setColorPresionado();
                 estado.setColorSinPresionar();
                 transicion.setColorSinPresionar();
+                limpiar.setColorSinPresionar();
                 seleccionar.setColorSinPresionar();
                 info.setText(INFO_ANALIZAR);
                 break;
@@ -164,6 +199,7 @@ public class V_slideMenu extends JPanel {
     }
 
     private final RSButtonMetro analizar = new RSButtonMetro("        ANALIZAR");
+    private final RSButtonMetro limpiar = new RSButtonMetro("         LIMPIAR");
     private final RSButtonMetro estado = new RSButtonMetro("           ESTADO");
     private final RSButtonMetro seleccionar = new RSButtonMetro("SELECCIONAR");
     private final RSButtonMetro transicion = new RSButtonMetro("   TRANSICIÓN");
@@ -180,6 +216,7 @@ public class V_slideMenu extends JPanel {
                                 .addGroup(panel_menuLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(analizar, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(transicion, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(limpiar, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(seleccionar, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addGroup(GroupLayout.Alignment.TRAILING, panel_menuLayout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -199,6 +236,8 @@ public class V_slideMenu extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(seleccionar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
+                                .addComponent(limpiar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(analizar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(scroll, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)

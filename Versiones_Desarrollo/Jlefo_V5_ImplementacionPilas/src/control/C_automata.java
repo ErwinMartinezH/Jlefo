@@ -5,39 +5,37 @@
  */
 package control;
 
-import funciones.ctrlZ_Y.Control;
-import funciones.orden.Ordenador;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.SQLOutput;
-import java.util.*;
-import modelo.M_estado;
-import modelo.M_transicion;
-import vista.V_lienzo;
-import vista.V_popupmenu;
-import static javax.swing.JOptionPane.*;
-import static java.awt.event.MouseEvent.*;
-import static funciones.NmComponentes.*;
 import funciones.archivo.Archivo;
 import funciones.backtracking.Rastreador;
+import funciones.ctrlZ_Y.Control;
 import funciones.er_afd.Inicio;
+import funciones.orden.Ordenador;
+import modelo.M_arco;
+import modelo.M_estado;
+import modelo.M_nodo;
+import modelo.M_transicion;
+import vista.*;
 
-import java.io.*;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import modelo.M_arco;
-import modelo.M_nodo;
-import vista.V_interfaz;
-import vista.V_rastreo;
-import vista.V_tabs;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
+import java.util.List;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import static funciones.NmComponentes.*;
+import static java.awt.event.MouseEvent.BUTTON1;
+import static java.awt.event.MouseEvent.BUTTON3;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
- *
  * @author herma
  */
 public class C_automata extends MouseAdapter implements ActionListener {
@@ -57,7 +55,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
     private Point clic = null, origen = null, destino = null;
     private int idOrigen = 0;
 
-    private  String camino = "";
+    private String camino = "";
     private String alfabeto[] = {camino};
 
     private int version = 0;
@@ -134,7 +132,6 @@ public class C_automata extends MouseAdapter implements ActionListener {
     }
 
     /**
-     *
      * @return version del objeto (ctrl z)
      */
     public int getVersion() {
@@ -151,7 +148,6 @@ public class C_automata extends MouseAdapter implements ActionListener {
     }
 
     /**
-     *
      * @return el id del estado actual
      */
     public int getIdEstado() {
@@ -346,7 +342,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
                 //mover transiciones
                 int indice = 0;
                 int tope = transiciones.size() - 1;
-                for (;;) {
+                for (; ; ) {
                     if (indice > tope) {
                         break;
                     }
@@ -489,22 +485,22 @@ public class C_automata extends MouseAdapter implements ActionListener {
                     ancho = CUADRADO;
                     alto = CUADRADO;
                     for (M_transicion trans : transiciones) {
-                        if (lienzo.getTipoPanel().equals(AF)){
-                            String alfabeto[] = {"0","1","0,1"};
-                        if (trans.getMascara().intersects(coordX, coordY, ancho, alto)) {
-                            String alfa = (String) JOptionPane.showInputDialog(lienzo,
-                                    "Seleccionar", "Alfabeto",
-                                    JOptionPane.QUESTION_MESSAGE, null,
-                                    alfabeto, alfabeto[0]);
-                            if (alfa != null) {
-                                ObjetoDeshacer();
-                                trans.setAlfabeto(alfa);
+                        if (lienzo.getTipoPanel().equals(AF)) {
+                            String alfabeto[] = {"0", "1", "0,1"};
+                            if (trans.getMascara().intersects(coordX, coordY, ancho, alto)) {
+                                String alfa = (String) JOptionPane.showInputDialog(lienzo,
+                                        "Seleccionar", "Alfabeto",
+                                        JOptionPane.QUESTION_MESSAGE, null,
+                                        alfabeto, alfabeto[0]);
+                                if (alfa != null) {
+                                    ObjetoDeshacer();
+                                    trans.setAlfabeto(alfa);
+                                }
+                                lienzo.repaint();
+                                setCambios(true);
+                                break;
                             }
-                            lienzo.repaint();
-                            setCambios(true);
-                            break;
-                        }
-                        } else if (lienzo.getTipoPanel().equals(ADP)){
+                        } else if (lienzo.getTipoPanel().equals(ADP)) {
                             if (trans.getMascara().intersects(coordX, coordY, ancho, alto)) {
 
                                 JPanel panel = new JPanel();
@@ -598,7 +594,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
 
                             /////
                             indice = 0;
-                            for (;;) {
+                            for (; ; ) {
                                 int tope = transiciones.size() - 1;
                                 if (indice > tope) {
                                     break;
@@ -678,20 +674,20 @@ public class C_automata extends MouseAdapter implements ActionListener {
     /**
      * Crea la transicion entre un nodo y otro
      *
-     * @param x1 coordenada "x" del nodo origen
-     * @param y1 coordenada "y" del nodo origen
-     * @param x2 coordenada "x" del nodo destino
-     * @param y2 coordenada "y" del nodo destino
-     * @param tipo SIMPLE o ARCO
-     * @param origen id del nodo origen
+     * @param x1      coordenada "x" del nodo origen
+     * @param y1      coordenada "y" del nodo origen
+     * @param x2      coordenada "x" del nodo destino
+     * @param y2      coordenada "y" del nodo destino
+     * @param tipo    SIMPLE o ARCO
+     * @param origen  id del nodo origen
      * @param destino id del nodo destino
      */
     private void crearTransicion(int x1, int y1, int x2, int y2, String tipo,
-            int origen, int destino) {
+                                 int origen, int destino) {
         //String[] alfa = null;
         if (lienzo.getTipoPanel().equals(AF)) {
             System.out.println("Soy AF");
-            String alfabeto[] = {"0","1","0,1"};
+            String alfabeto[] = {"0", "1", "0,1"};
 
             String alfa = (String) JOptionPane.showInputDialog(null,
                     "Seleccionar", "Alfabeto",
@@ -730,7 +726,8 @@ public class C_automata extends MouseAdapter implements ActionListener {
             lienzo.setFinLinea(null);
             lienzo.repaint();
             setCambios(true);
-        }if (lienzo.getTipoPanel().equals(ADP)){
+        }
+        if (lienzo.getTipoPanel().equals(ADP)) {
             System.out.println("Soy ADP");
             JPanel panel = new JPanel();
             panel.setLayout(new GridLayout(3, 2)); // Establecer un diseño de cuadrícula para organizar los campos
@@ -808,7 +805,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
             lienzo.setFinLinea(null);
             lienzo.repaint();
             setCambios(true);
-       }
+        }
 
     }
 
@@ -852,10 +849,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
     long intervalo = 1600;
     Random aleatorio = new Random(System.currentTimeMillis());
 
-    public String getEstatusCadena(){
+    public String getEstatusCadena() {
         return estatusCadena;
     }
-    
+
     public void rastrear() {
         btn_order = true;
         valido = new ArrayList();
@@ -871,7 +868,9 @@ public class C_automata extends MouseAdapter implements ActionListener {
         switch (tipoAutomata) {
             case ADP:
                 //quiero imprimir el alfabeto
-                System.out.println("Alfabeto: " + alfabetoFinal);
+                //System.out.println("Alfabeto: " + alfabetoFinal);
+                JOptionPane.showMessageDialog(null, "Aun no implementado");
+                break;
 
             case AFD:
                 model_TransicionGeneral = tipoTableModel();
@@ -938,10 +937,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
             case "0":
                 tabla_AF = new DefaultTableModel(new Object[][]{},
                         new String[]{
-                            "ESTADO", "Σ={0}", "FINAL"
+                                "ESTADO", "Σ={0}", "FINAL"
                         }) {
                     boolean[] canEdit = new boolean[]{
-                        false, false, false
+                            false, false, false
                     };
 
                     @Override
@@ -954,10 +953,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
             case "1":
                 tabla_AF = new DefaultTableModel(new Object[][]{},
                         new String[]{
-                            "ESTADO", "Σ={1}", "FINAL"
+                                "ESTADO", "Σ={1}", "FINAL"
                         }) {
                     boolean[] canEdit = new boolean[]{
-                        false, false, false
+                            false, false, false
                     };
 
                     @Override
@@ -970,10 +969,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
             case "01":
                 tabla_AF = new DefaultTableModel(new Object[][]{},
                         new String[]{
-                            "ESTADO", "Σ={0}", "Σ={1}", "FINAL"
+                                "ESTADO", "Σ={0}", "Σ={1}", "FINAL"
                         }) {
                     boolean[] canEdit = new boolean[]{
-                        false, false, false, false
+                            false, false, false, false
                     };
 
                     @Override
@@ -986,10 +985,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
             default:
                 tabla_AF = new DefaultTableModel(new Object[][]{},
                         new String[]{
-                            "ESTADO", "Σ={0}", "Σ= {1}", "Σ={2}","FINAL"
+                                "ESTADO", "Σ={0}", "Σ= {1}", "Σ={2}", "FINAL"
                         }) {
                     boolean[] canEdit = new boolean[]{
-                        false, false, false, false
+                            false, false, false, false
                     };
 
                     @Override
@@ -1010,6 +1009,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
             ------------------------
        filn |  qn  | qn | qn |   0
      */
+
     /**
      *
      */
@@ -1130,10 +1130,10 @@ public class C_automata extends MouseAdapter implements ActionListener {
     private void llenarTablaTransiciones(DefaultTableModel model) throws FileNotFoundException, IOException {
         model_CADENAS = new DefaultTableModel(new Object[][]{},
                 new String[]{
-                    "ACEPTA", "NO ACEPTA"
+                        "ACEPTA", "NO ACEPTA"
                 }) {
             boolean[] canEdit = new boolean[]{
-                false, false
+                    false, false
             };
 
             @Override
@@ -1925,7 +1925,7 @@ public class C_automata extends MouseAdapter implements ActionListener {
     }
 
     private DefaultTableModel llenarColTabSub(int estado, int fil, List<M_transicion> transiciones,
-            DefaultTableModel mod_tabSub) {
+                                              DefaultTableModel mod_tabSub) {
 
         String aux;
         for (M_transicion temp : transiciones) {
@@ -2028,7 +2028,6 @@ public class C_automata extends MouseAdapter implements ActionListener {
     }
 
     /**
-     *
      * @return tipo de automata AFD o AFND, RETORNAR o DESCONECTADOS indica
      * inconvenientes con el diagrama
      */
